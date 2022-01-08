@@ -1,10 +1,9 @@
 import psycopg2
 
-
 hostname = 'localhost'
-database = 'myDB'
+database = 'user_students'
 username = 'postgres'
-pwd = '' #type password here
+pwd = ''
 port_id = 5432
 conn = None
 cur = None
@@ -30,7 +29,20 @@ try:
     cur.execute(create_script)
 
     insert_script = "INSERT INTO employee (id, name, salary, dept_id) VALUES (%s, %s, %s, %s)"
-    insert_values = [(1, 'Ryan', 200000, 'software engineer'), (2, 'Anna', 32000, 'ice cream salesperson'), (3, 'Julio', 29000, 'carpet cleaner')]
+    name = input('Input name: ')
+    salary = int(input('Input salary: '))
+    occupation = input('Input occupation: ')
+    insert_values = [(1, name, salary, occupation)]
+
+    for record in insert_values:
+        cur.execute(insert_script, record)
+
+    insert_script = "INSERT INTO employee (id, name, salary, dept_id) VALUES (%s, %s, %s, %s)"
+    print('Now input the next one.')
+    name = input('Input name: ')
+    salary = int(input('Input salary: '))
+    occupation = input('Input occupation: ')
+    insert_values = [(2, name, salary, occupation)]
 
     for record in insert_values:
         cur.execute(insert_script, record)
