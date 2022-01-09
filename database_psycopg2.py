@@ -24,7 +24,7 @@ def update():
 
         cur = conn.cursor()
 
-        cur.execute('DROP TABLE IF EXISTS user_students')
+        #cur.execute('DROP TABLE IF EXISTS user_students')
 
         create_script = '''CREATE TABLE IF NOT EXISTS user_students (
             name       varchar(40) NOT NULL,
